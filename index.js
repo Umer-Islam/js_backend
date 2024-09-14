@@ -7,7 +7,7 @@ let PORT = process.env.PORT;
 app.get("/", (req, res) => {
   res.send("<h1>it works........&&</h1>");
 });
-app.get('/hehe'(req,res) => { 
+app.get('/hehe',(req,res) => { 
   res.send("hehe")
 })
 app.listen(PORT, () => {
