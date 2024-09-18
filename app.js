@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require('mongoose')
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const morgan = require("morgan"); // where there is a request it shows in console
@@ -6,7 +7,8 @@ const exphbs = require("express-handlebars");
 const passport = require("passport");
 const path = require("path");
 const session = require("express-session");
-
+// const { default: mongoose } = require("mongoose");
+const MongoStore = require('connect-mongo')(session)
 dotenv.config({ path: "./config/config.env" });
 require("./config/passport")(passport);
 connectDB();
@@ -26,6 +28,7 @@ app.use(
     secret: "hehe",
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({mongooseConnection:mongoose.connection})
     // cookie: { secure: true }, /* requires https */
   })
 );
