@@ -1,11 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
-</head>
-<body>
-    <h1>Dashboard</h1>
-</body>
-</html>
+<h6>DashBoard</h6>
+<h3>welcome {{name}}</h3>
+<p>here are your stories</p>
+{{#if stories}}
+<table class="striped">
+    <thead>
+        <tr>
+            <th>title</th>
+            <th>date</th>
+            <th>status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>{{#each stories}}
+        <tr>
+            <td><a href="/stories/{{_id}}"></a>{{title}}</td>
+            <td>{{createdAt}}</td>
+            <td><span class="dash-status">{{status}}</span></td>
+            <td></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{else}}
+<p>you have not created any stoires yet.</p>
+{{/if}}
