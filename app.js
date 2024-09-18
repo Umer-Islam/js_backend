@@ -14,13 +14,24 @@ require("./config/passport")(passport);
 connectDB();
 
 const app = express();
+//body parser
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 //morgan logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-
+//hanlde bar helpers/
+const { formatDate } = require("./helpers/hbs");
 //handlebars
-app.engine(".hbs", exphbs.engine({ extname: ".hbs", defaultLayout: "main" }));
+app.engine(
+  ".hbs",
+  exphbs.engine({
+    extname: ".hbs",
+    defaultLayout: "main",
+    helpers: { formatDate },
+  })
+);
 app.set("view engine", ".hbs");
 //express-session middleware
 app.use(

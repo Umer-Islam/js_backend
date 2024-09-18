@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const StorySchema = new mongoose.Schema({
   googleId: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
   },
   body: {
